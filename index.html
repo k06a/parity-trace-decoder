@@ -53,6 +53,7 @@
             let methods;
             $.getJSON('./4bytes.json').then(function (json) {
                 methods = json;
+                console.log('Loaded ' + Object.keys(methods).length + ' method hashes');
             });
             $('#decode').bind('click', async function () {
                 let tracesStr = $('#parity-traces').val();
