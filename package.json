@@ -1,0 +1,36 @@
+{
+  "name": "parity-trace-decoder",
+  "version": "1.0.0",
+  "description": "Parity Trace Decoder",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "dependencies": {
+    "bn.js": "^4.11.8",
+    "browserify": "^16.2.2",
+    "xmlhttprequest": "^1.8.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "dist": "browserify decoder.js > docs/web-decoder.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/k06a/parity-trace-decoder.git"
+  },
+  "keywords": [
+    "ethereum",
+    "solidity",
+    "callstack",
+    "tree",
+    "traces"
+  ],
+  "author": "Anton Bukov <k06aaa@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/k06a/parity-trace-decoder/issues"
+  },
+  "homepage": "https://github.com/k06a/parity-trace-decoder#readme"
+}
