@@ -54,6 +54,7 @@
                 methods = json;
                 console.log('Loaded ' + Object.keys(methods).length + ' method hashes');
             });
+
             $('#parity-traces').bind('input', async function () {
                 let tracesStr = $('#parity-traces').val();
                 if (!tracesStr.startsWith('[')) {
