@@ -1,4 +1,6 @@
-exports.decoder = function (traces, methods) {
+const BigNumber = require('bn.js');
+
+module.exports = function (traces, methods) {
     const tree = {};
     for (let trace of traces) {
         let subtree = tree;
@@ -30,7 +32,7 @@ exports.decoder = function (traces, methods) {
         const methodId = tree.trace.action.input.substr(0,10);
         const method = methods[methodId] || methodId;
 
-        const result = tab + error + ` [${index++}] ` + method + (value.isZero() ? '' : ` // => ${Number.parseInt(value.toString())/10**18} ETH`);
+        var result = tab + error + ` [${index++}] ` + method + (value.isZero() ? '' : ` // => ${Number.parseInt(value.toString())/10**18} ETH`);
         for (let leaf of Object.keys(tree)) {
             if (leaf != 'trace') {
                 let str;
