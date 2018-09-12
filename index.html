@@ -28,7 +28,6 @@
                 <label for="parity-traces">Parity Traces:</label>
                 <textarea class="form-control" rows="10" id="parity-traces"></textarea>
             </div>
-            <button type="button" class="btn btn-primary" id="decode">Decode</button>
             <div class="form-group">
                 <label for="parity-tree">Tokens integer weights:</label><br/>
                 <code><pre id="parity-tree"></pre></code>
@@ -55,7 +54,7 @@
                 methods = json;
                 console.log('Loaded ' + Object.keys(methods).length + ' method hashes');
             });
-            $('#decode').bind('click', async function () {
+            $('#parity-traces').bind('input', async function () {
                 let tracesStr = $('#parity-traces').val();
                 if (!tracesStr.startsWith('[')) {
                     tracesStr = '[' + tracesStr + ']';
