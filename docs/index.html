@@ -30,7 +30,7 @@
             </div>
             <button type="button" class="btn btn-primary" id="decode">Decode</button>
             <div class="form-group">
-                <label for="parity-tree">Tokens integer weights:</label>
+                <label for="parity-tree">Tokens integer weights:</label><br/>
                 <kbd id="parity-tree"></kbd>
             </div>
 		</div>
@@ -50,10 +50,12 @@
 
         <script src="../decoder.js"></script>
         <script>
-            const traces = $('#parity-traces').val();
             const methods = await $.getJSON('../4bytes.json');
-            const decoder = await $.getScript('../decoder.js');
-            $('#parity-tree').text(decoder(traces, methods));
+            const decoder = await $.getScript('../decoder.js');    
+            $('#decode').bind('click', async function () {
+                const traces = $('#parity-traces').val();
+                $('#parity-tree').text(decoder(traces, methods));
+            });
         </script>
 	</body>
 </html>
