@@ -50,9 +50,16 @@
 
         <script src="./web-decoder.js"></script>
         <script>
-            const methods = $.getJSON('../4bytes.json');
+            let methods;
+            $.getJSON('../4bytes.json').then(function (json) {
+                methods = json;
+            });
             $('#decode').bind('click', async function () {
-                const traces = JSON.parse($('#parity-traces').val());
+                let tracesStr = $('#parity-traces').val();
+                if (!tracesStr.startsWith('[')) {
+                    tracesStr = '[' + tracesStr + ']';
+                }
+                const traces = JSON.parse(tracesStr);
                 $('#parity-tree').text(decoder(traces, methods));
             });
         </script>
