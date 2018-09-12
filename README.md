@@ -4,6 +4,8 @@ Parity Trace Decoder to call tree
 
 # Usage
 
+Try web version here: https://k06a.github.io/parity-trace-decoder/
+
 Install dependencies
 ```
 npm install
