@@ -31,7 +31,7 @@
             <button type="button" class="btn btn-primary" id="decode">Decode</button>
             <div class="form-group">
                 <label for="parity-tree">Tokens integer weights:</label><br/>
-                <kbd id="parity-tree"></kbd>
+                <code><pre id="parity-tree"></pre></code>
             </div>
 		</div>
 
@@ -52,8 +52,7 @@
         <script>
             const methods = $.getJSON('../4bytes.json');
             $('#decode').bind('click', async function () {
-                const traces = $('#parity-traces').val();
-                console.log(decoder);
+                const traces = JSON.parse($('#parity-traces').val());
                 $('#parity-tree').text(decoder(traces, methods));
             });
         </script>
