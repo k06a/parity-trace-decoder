@@ -1,6 +1,6 @@
 const BigNumber = require('bn.js');
 
-module.exports = function (traces, methods) {
+decoder = function (traces, methods) {
     const tree = {};
     for (let trace of traces) {
         let subtree = tree;
@@ -46,3 +46,5 @@ module.exports = function (traces, methods) {
 
     return recursivePrint(tree)[0];
 };
+
+module.exports = decoder;
