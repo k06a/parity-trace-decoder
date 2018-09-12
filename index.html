@@ -51,7 +51,7 @@
         <script src="./web-decoder.js"></script>
         <script>
             let methods;
-            $.getJSON('../4bytes.json').then(function (json) {
+            $.getJSON('./4bytes.json').then(function (json) {
                 methods = json;
             });
             $('#decode').bind('click', async function () {
