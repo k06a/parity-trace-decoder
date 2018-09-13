@@ -7,11 +7,12 @@ while (nextUrl) {
     request.open('GET', nextUrl, false);
     request.send();
     const json = JSON.parse(request.responseText);
-    nextUrl = json.next;
 
     for (let sig of json.results) {
         console.log(`"${sig.hex_signature}":"${sig.text_signature}",`);
     }
+    console.error(`Downloaded page ${nextUrl}`);
+    nextUrl = json.next;
 }
 console.log('}');
 
