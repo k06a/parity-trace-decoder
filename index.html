@@ -50,7 +50,9 @@
         <script src="./web-decoder.js"></script>
         <script>
             let methods;
-            $.getJSON('./4bytes.json').then(function (json) {
+            const pathToMethodsJSON = $(location).attr('href').split('/').slice(0, -1).join('/') + '/4bytes.json';
+            console.log('Downloading ' + pathToMethodsJSON);
+            $.getJSON(pathToMethodsJSON).then(function (json) {
                 methods = json;
                 console.log('Loaded ' + Object.keys(methods).length + ' method hashes');
             });
