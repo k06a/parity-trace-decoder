@@ -1,6 +1,6 @@
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
-let nextUrl = 'https://www.4byte.directory/api/v1/signatures/?format=json';
+let nextUrl = 'https://www.4byte.directory/api/v1/signatures/?format=json&page=1';
 console.log('{');
 while (nextUrl) {
     const request = new XMLHttpRequest("");
