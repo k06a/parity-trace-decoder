@@ -48,7 +48,7 @@ decoder = function (traces, methods) {
 
         let methodStr = method + '(0x' + tree.trace.action.input.substr(10) + ')';
         if (method.endsWith(')')) {
-            const input = tree.trace.action.input.substr(10);
+            const input = (tree.trace.action.input || '').substr(10);
             const methodName = method.split('(')[0];
             const inTypes = method.split(/[(),]+/).slice(1, -1);
 
