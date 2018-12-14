@@ -46,7 +46,7 @@ decoder = function (traces, methods) {
         const methodId = tree.trace.action.input.substr(0,10);
         const method = methods[methodId] || methodId;
 
-        let methodStr = method + '(0x' + tree.trace.action.input.substr(10) + ')';
+        let methodStr = method + '(0x' + (tree.trace.action.input || '').substr(10) + ')';
         if (method.endsWith(')')) {
             const input = (tree.trace.action.input || '').substr(10);
             const methodName = method.split('(')[0];
@@ -60,6 +60,7 @@ decoder = function (traces, methods) {
             methodStr += ':' + (shortResult == '0x' ? '0x0' : shortResult);
         }
         var result = tab + error + ` [${index++}] ` + methodStr + (value.isZero() ? '' : ` // => ${Number.parseInt(value.toString())/10**18} ETH`);
+        result += ' { to: ' + tree.trace.action.to +  ' }'
         for (let leaf of Object.keys(tree)) {
             if (leaf != 'trace') {
                 let str;
