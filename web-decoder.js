@@ -44,7 +44,7 @@ decoder = function (traces, methods) {
             return ' ';
         }();
 
-        const value = new BigNumber(tree.trace.action.value.substr(2), 16);
+        const value = new BigNumber((tree.trace.action.value || '').substr(2), 16);
         const methodId = (tree.trace.action.input || '').substr(0,10);
         const method = (methods || {})[methodId] || methodId;
 
