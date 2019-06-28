@@ -50,12 +50,42 @@ decoder = function (traces, methods) {
         if (method.endsWith(')')) {
             const input = (tree.trace.action.input || '').substr(10);
             const methodName = method.split('(')[0];
-            const inTypes = method.split(/[(),]+/).slice(1, -1);
-            console.log('method', method);
-            console.log('inTypes', inTypes);
 
-            var inDecoded = abi.rawDecode(inTypes, Buffer.from(input, 'hex'))
-            methodStr = methodName + '(' + inTypes.map((type, i) => printArg(type, inDecoded[i])) + ')';
+            let inTypes;
+            if (method.indexOf('(') == method.lastIndexOf('(')) {
+
+                inTypes = method.split(/[(),]+/).slice(1, -1);
+            } else {
+
+                inTypes = [];
+                let iter = inTypes;
+                const backs = [];
+                for (let letter of method.substr(method.indexOf('(') + 1)) {
+                    if (letter == '(') {
+                        iter.push([]);
+                        backs.push(iter);
+                        iter = iter[iter.length - 1];
+                    } else
+                    if (letter == ')') {
+                        iter = backs.pop();
+                    } else
+                    if (letter == ',') {
+                        iter.push("");
+                    } else {
+                        if (iter.length == 0 || typeof(iter[iter.length - 1]) != 'string') {
+                            iter.push("");
+                        }
+                        iter[iter.length - 1] = iter[iter.length - 1] + letter;
+                    }
+                }
+            }
+
+            let inDecoded;
+            try {
+                inDecoded = abi.rawDecode(inTypes, Buffer.from(input, 'hex'));
+                methodStr = methodName + '(' + inTypes.map((type, i) => printArg(type, inDecoded[i])) + ')';
+            } catch(e) {
+            }
         }
         if (tree.trace.result && tree.trace.result.output) {
             const shortResult = tree.trace.result.output.replace(/0x0+/, '0x');
@@ -74,7 +104,7 @@ decoder = function (traces, methods) {
         return [result, index];
     }
 
-    return recursivePrint(tree)[0];
+    return recursivePrint(tree)[0] + '\n';
 };
 
 module.exports = decoder;
