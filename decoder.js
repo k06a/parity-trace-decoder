@@ -51,6 +51,8 @@ decoder = function (traces, methods) {
             const input = (tree.trace.action.input || '').substr(10);
             const methodName = method.split('(')[0];
             const inTypes = method.split(/[(),]+/).slice(1, -1);
+            console.log('method', method);
+            console.log('inTypes', inTypes);
 
             var inDecoded = abi.rawDecode(inTypes, Buffer.from(input, 'hex'))
             methodStr = methodName + '(' + inTypes.map((type, i) => printArg(type, inDecoded[i])) + ')';
