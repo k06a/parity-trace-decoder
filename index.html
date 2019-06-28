@@ -61,7 +61,7 @@
                     tracesStr = '[' + tracesStr + ']';
                 }
                 const traces = JSON.parse(tracesStr);
-                $('#parity-tree').text(decoder(traces, methods));
+                $('#parity-tree').text(decoder(traces, methods) + '\n');
             });
         </script>
 	</body>
