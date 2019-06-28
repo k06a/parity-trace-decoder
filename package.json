@@ -8,8 +8,8 @@
   },
   "dependencies": {
     "bn.js": "^4.11.8",
-    "browserify": "^16.2.2",
-    "ethereumjs-abi": "^0.6.5",
+    "browserify": "^16.2.3",
+    "ethereumjs-abi": "^0.6.7",
     "request": "^2.88.0",
     "throttled-request": "^0.1.1",
     "xmlhttprequest": "^1.8.0"
