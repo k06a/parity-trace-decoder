@@ -91,20 +91,32 @@ decoder = function (traces, methods) {
             const shortResult = tree.trace.result.output.replace(/0x0+/, '0x');
             methodStr += ':' + (shortResult == '0x' ? '0x0' : shortResult);
         }
-        var result = tab + error + ` [${index++}] ` + methodStr + (value.isZero() ? '' : ` // => ${Number.parseInt(value.toString())/10**18} ETH`);
+        var result = (tab.length == 0 ? '<ul class=tree>' : '') + '<li>' +
+            error + ` [${index++}] ` + methodStr + (value.isZero() ? '' : ` // => ${Number.parseInt(value.toString())/10**18} ETH`);
         result += ' { to: ' + tree.trace.action.to +  ' }'
-        for (let leaf of Object.keys(tree)) {
-            if (leaf != 'trace') {
-                let str;
-                [str, index] = recursivePrint(tree[leaf], index, tab + '  ');
-                result += '\n' + str;
+        if (Object.keys(tree).length > 0) {
+            let anyLeaf = false;
+            for (let leaf of Object.keys(tree)) {
+                if (leaf != 'trace') {
+                    if (!anyLeaf) {
+                        result += '<div class="expander expanded"></div><ul class="expanded">';
+                        anyLeaf = true;
+                    }
+                    let str;
+                    [str, index] = recursivePrint(tree[leaf], index, tab + '  ');
+                    result += str;
+                }
+            }
+            if (anyLeaf) {
+                result += '</ul>';
             }
         }
+        result += (tab.length == 0 ? '</ul>' : '') + '</li>';
 
         return [result, index];
     }
 
-    return recursivePrint(tree)[0] + '\n';
+    return recursivePrint(tree)[0];// + '\n';
 };
 
 module.exports = decoder;

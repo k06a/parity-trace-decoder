@@ -1,0 +1,44 @@
+.tree { margin: 0 0 0 4px; }
+.tree,.tree ul {
+  list-style-type: none; 
+  position: relative;
+  padding: 0;
+  cursor: default;
+  border-left: 1px dotted #ccc;
+}
+.tree ul {
+  margin: 0; 
+  display: none;
+}
+.tree li {
+  position: relative;
+  margin: 0 0 0 10px;
+  padding: 2px 0 2px 0;
+}
+/* extend a line to the list item */
+.tree li:before {
+  position: absolute;
+  top: 10px; left: -9px; height: 1px; width: 5px;
+  border-top: 1px dotted #ccc;
+  content: ' '; 
+} 
+
+/* erase all lines for last item */
+.tree li:last-child:after {
+  position: absolute;
+  top: 17px; left: -13px; bottom: 0; width: 7px;
+  background-color: white;
+  content: ' ';
+} 
+/* add expander widget */
+.tree .expander {
+  background: #fff url(icons.png) no-repeat scroll;
+  background-position: -64px -4px;
+  position: absolute;
+  top: 8px; left: -15px;
+  height: 9px; width: 9px;
+  cursor: pointer;
+}
+.tree .expander:hover { background-color: #eee; }
+.tree .expander.expanded { background-position: -78px -4px; }
+.tree ul.expanded { display: block; }

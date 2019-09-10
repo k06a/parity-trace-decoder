@@ -7,6 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <!-- Latest compiled and minified Bootstrap CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel=StyleSheet href="jquery-simplefolders/main.css" type="text/css" media=screen>
         <style>
             .tab-pane {
                 border-left: 1px solid #ddd;
@@ -47,6 +48,7 @@
         <!-- Latest compiled and minified Bootstrap JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
+        <script src="jquery-simplefolders/main.js"></script>
         <script src="./web-decoder.js"></script>
         <script>
             let methods;
@@ -61,7 +63,7 @@
                     tracesStr = '[' + tracesStr + ']';
                 }
                 const traces = JSON.parse(tracesStr);
-                $('#parity-tree').text(decoder(traces, methods) + '\n');
+                $('#parity-tree').html(decoder(traces, methods) + '<br/>');
             });
         </script>
 	</body>
