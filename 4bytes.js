@@ -2,7 +2,7 @@ var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 (async function () {
     
-    const batch_size = 20;
+    const batch_size = 1;
     let url = 'https://www.4byte.directory/api/v1/signatures/?format=json&page=';
 
     let promises = [];
