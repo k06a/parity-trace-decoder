@@ -118,7 +118,7 @@ decoder = function (traces, methods) {
             `</td>` +
             `<td style="white-space: nowrap;">&nbsp;${tree.trace.action.to || tree.trace.action.refundAddress}&nbsp;</td>` +
             `<td style="white-space: nowrap; text-align:right;">&nbsp;` + (value.isZero() ? '0' : Number.parseInt(value.toString())/10**18) + ` ETH&nbsp;</td>` +
-            `<td style="white-space: nowrap;">&nbsp;` + ((tree.trace.result && tree.trace.result.gasUsed) ? parseInt(tree.trace.result.gasUsed.substr(2), 16) : '') + `&nbsp;</td>`;
+            `<td style="white-space: nowrap;">&nbsp;` + ((tree.trace.result && tree.trace.result.gasUsed) ? parseInt(tree.trace.result.gasUsed.substr(2), 16) + 700 : '') + `&nbsp;</td>`;
 
         if (Object.keys(tree).length > 0) {
             let anyLeaf = false;
