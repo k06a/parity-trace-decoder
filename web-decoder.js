@@ -38,6 +38,9 @@ decoder = function (traces, methods) {
             if (tree.trace.error == 'Bad instruction') {
                 return '#';
             }
+            if (tree.trace.error == 'Bad jump destination') {
+                return '?';
+            }
             if (tree.trace.error == 'Out of gas') {
                 return '$';
             }
@@ -102,7 +105,7 @@ decoder = function (traces, methods) {
         }
 
         var result = (tab.length == 0 ? '<table border="1" bordercolor="#eee" style="width: 100%;">' +
-            ['Err', '#', 'Tree', 'To', 'Value', 'Gas'].map(a => `<th class="text-center">${a}</th>`).join('') +
+            ['Err', '#', 'Tree', 'To', 'Value', 'Gas Left', 'Gas Used'].map(a => `<th class="text-center">${a}</th>`).join('') +
             '<colgroup><col width="0%"/><col width="0%"/><col width="100%"/><col width="0%"/><col width="0%"/><col width="0%"/><col width="0%"/></colgroup>' : '') + '<tr>';
         
         const prefix = tab.split('').map(x => '&nbsp;').join('');
@@ -120,6 +123,7 @@ decoder = function (traces, methods) {
             `</td>` +
             `<td style="white-space: nowrap;">&nbsp;${tree.trace.action.to || tree.trace.action.refundAddress}&nbsp;</td>` +
             `<td style="white-space: nowrap; text-align:right;">&nbsp;` + (value.isZero() ? '0' : Number.parseInt(value.toString())/10**18) + ` ETH&nbsp;</td>` +
+            `<td style="white-space: nowrap;">&nbsp;` + (tree.trace.action.gas ? parseInt(tree.trace.action.gas.substr(2), 16) : '') + `&nbsp;</td>` +
             `<td style="white-space: nowrap;">&nbsp;` + ((tree.trace.result && tree.trace.result.gasUsed) ? parseInt(tree.trace.result.gasUsed.substr(2), 16) + 700 : '') + `&nbsp;</td>`;
 
         if (Object.keys(tree).length > 0) {
