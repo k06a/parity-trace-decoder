@@ -44,6 +44,9 @@ decoder = function (traces, methods) {
             if (tree.trace.error == 'Out of gas') {
                 return '$';
             }
+            if (tree.trace.error == 'Mutable Call In Static Context') {
+                return '%';
+            }
             return ' ';
         }();
 
